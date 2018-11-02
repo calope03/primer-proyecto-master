@@ -1,7 +1,7 @@
 
-/* Move down content because we have a fixed navbar that is 50px tall */
+/* Move down content because we have a fixed navbar that is 65px tall */
 body {
-  /*padding-top: 50px;*/
+  padding-top: 65px;
 }
 
 
@@ -110,6 +110,14 @@ body {
 }
 .placeholder {
   margin-bottom: 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+.placeholder:hover{
+  margin-bottom: 20px;
+  color: #333;
+  text-decoration: none;
 }
 .placeholder img {
   display: inline-block;
