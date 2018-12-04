@@ -1,3 +1,8 @@
+/**
+ * Funcion que obtiene todos los argumentos de la URL
+ * @return {object} objeto con todos los argumentos en formato clave, valor 
+ * @see {@link https://stackoverflow.com/posts/20097994/edit}
+ */
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -6,40 +11,13 @@ function getUrlVars() {
     return vars;
 }
 
-const urlParams = getUrlVars();
-//const myParam = urlParams.get('artist');
 
-var cabecera = document.querySelector('.main');
-
-if(urlParams.hasOwnProperty("q")){
-  var miBusqueda = urlParams["q"];
-  creaCabecera(cabecera,"topCuatroCirculos", "Resultados de ");
-  var URLBusqueda ="https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q="+miBusqueda+"&limit=50";
-  
-  var titulo = document.querySelector('#topOf');
-  titulo.insertAdjacentHTML('beforeend', miBusqueda);
-  
-  peticionAjax(URLBusqueda, function(respuesta) {
-    var topTracks = JSON.parse(respuesta);
-    console.log(topTracks);
-    var tracks = topTracks.data;
-    tracks.forEach(añadeATabla);
-    for(var i = 0; i < 4; i++){
-      ponEnCirculos(tracks[i], i);
-    }
-    console.log(tracks);
-   
-  });
-}else if(urlParams.hasOwnProperty("artist")){
-  var myParam = urlParams["artist"];
-  creaCabecera(cabecera,"artista");
-  peticionAjax("https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/"+myParam, pintaArtist);
-  peticionAjax("https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/"+myParam+"/top?limit=50", topTracksArtist);
-}else{
-  creaCabecera(cabecera,"topCuatroCirculos", "Top Tracks of ");
-  peticionAjax("https://ipapi.co/json/", topTracksCountry);
-}
-
+/**
+ * Funcion que dependiendo del tipo que estes tratando de cargar en la pagina te pinta una cabecera u otra
+ * @param {object} cabecera Recibe la cabecera de la pagina sobre la que pintar los datos
+ * @param {string} tipo Indica el tipo de cabecera que vamos a pintar
+ * @param {string} titulo Titulo del header
+ */
 function creaCabecera(cabecera, tipo, titulo){
   if (tipo === "topCuatroCirculos") {
     cabecera.insertAdjacentHTML('afterbegin', `
@@ -79,6 +57,23 @@ function creaCabecera(cabecera, tipo, titulo){
   }
 }
 
+/**
+ * Funcion carga el contenito de la pagina para el Top del pais y el de la busqueda, genera tanto la tabla como los cuatro circulos primeros
+ * @param {array} tracks Array con todas las canciones a mostrar
+ */
+function añadeContenido(tracks){
+  tracks.forEach(añadeATabla);
+  for(var i = 0; i < 4; i++){
+    ponEnCirculos(tracks[i], i);
+  }
+}
+
+/**
+ * LLamada Ajaxa una URL
+ * @param {string} url URL a la que le queremos hacer la peticion
+ * @param {object} callback
+ * @see {@link https://github.com/Fictizia/Master-en-Programacion-FullStack-con-JavaScript-y-Node.js_ed2/blob/master/teoria/clase16.md#ajax-en-la-pr%C3%A1ctica}
+ */
 function peticionAjax(url, callback) {
     var xmlHttp = new XMLHttpRequest();
 
@@ -94,15 +89,16 @@ function peticionAjax(url, callback) {
     xmlHttp.send();
 }
 
-
-
+/**
+ * Carga los datos de la tabla fila a fila
+ * @param {object} item elemento que vamos a insertar en la tabla
+ * @param {number} index indice del elemento sobre el que estamos iterando
+ */
 function añadeATabla(item,index){
-  
   var tabla = document.querySelector('#cuerpoTabla');
-
   var tr = document.createElement('tr');
-  
   var artistaTabla = "";
+  //Si no hay parametros solo tendremos un solo artista, en caso contrario iteramos sobre los colaboradores
   if(!myParam){
     artistaTabla = '<a href="?artist='+ item.artist.id +'" class = "">'+ item.artist.name +'</a>';
   }else{
@@ -111,12 +107,15 @@ function añadeATabla(item,index){
     }
      artistaTabla += '<a href="?artist='+ item.contributors[item.contributors.length-1].id +'" class = "">'+ item.contributors[item.contributors.length-1].name +'</a>';
   }
-  
   tr.innerHTML = '<td># '+(index+1)+'</td> <td>' + item.title+'</td> <td>'+ artistaTabla +'</td> <td>'+ item.album.title +'</td>  <td><a href="'+ item.link +'" class = "playMe"> <img src="/public/resources/images/play.png" class = "playButton" alt="Play me"/>Play Me</a></td>';
-
   tabla.appendChild(tr);
 }
 
+/**
+ * Rellena un circulo segun el elemento 
+ * @param {object} track
+ * @param {number} posicion indice del elemento sobre el que estamos iterando
+ */
 function ponEnCirculos(track,posicion){
   var circulo = "#circulo-"+ posicion;
   document.querySelector(circulo).setAttribute('href', track.link);
@@ -124,6 +123,11 @@ function ponEnCirculos(track,posicion){
   document.querySelector(circulo +' > h4').innerText = track.title;
   document.querySelector(circulo +' > span').innerText = track.artist.name;
 }
+
+/**
+ * Rellena un circulo con la imagen y la informacion del artista
+ * @param {} respuesta Respuesta de la llamada AJAX para pintar la informacion del artista
+ */
 function pintaArtist(respuesta){
   var artista = JSON.parse(respuesta);
   document.querySelector('.placeholderArtist > h1').innerText = artista.name;
@@ -132,41 +136,70 @@ function pintaArtist(respuesta){
   
 }
 
+/**
+ * Rellena la tabla con las canciones del artista
+ * @param {} respuesta Respuesta de la llamada AJAX para pintar las canciones del artista
+ */
 function topTracksArtist(respuesta){
   var topTracks = JSON.parse(respuesta);
   var tracks = topTracks.data;
   tracks.forEach(añadeATabla);
-  
-  console.log(topTracks);
+  document.querySelector(".loader").style.display = 'none';
 }
 
-
+/**
+ * Recibe la informacion del pais y seugn el pais en el que se encuentre realiza una llamada nueva
+ * @param {} respuesta Respuesta de la llamada AJAX para pintar las canciones del artista
+ */
 function topTracksCountry(respuesta) {
-  
   var localizacion = JSON.parse(respuesta);
   var pais = localizacion.country;
-  
   var titulo = document.querySelector('#topOf');
-  
   var idPlaylistPais = "";
   if(identificadoresPais.hasOwnProperty(pais)){
     idPlaylistPais = identificadoresPais[pais];
     titulo.insertAdjacentHTML('beforeend', localizacion.country_name);
   }else{
     idPlaylistPais = identificadoresPais.Mundial;
-    
   }
   var listaPais = "https://cors-anywhere.herokuapp.com/https://api.deezer.com/playlist/" + idPlaylistPais + "?limit=50";
-  
   peticionAjax(listaPais, function(respuesta) {
-  
     var topTracks = JSON.parse(respuesta);
     var tracks = topTracks.tracks.data;
-    tracks.forEach(añadeATabla);
-    for(var i = 0; i < 4; i++){
-      ponEnCirculos(tracks[i], i);
-    }
-    console.log(tracks);
-   
+    añadeContenido(tracks);
+    document.querySelector(".loader").style.display = 'none';
   });
+}
+//Ocultamos el mensaje de error, para solo mostrarlo en caso de error
+var error = document.getElementById('error');
+error.style.display = 'none';
+//Obtenemos los valores de la URL
+const urlParams = getUrlVars();
+var cabecera = document.querySelector('.main');
+if(urlParams.hasOwnProperty("q")){//Si tenemos algo que buscar
+  var miBusqueda = decodeURI(urlParams["q"]);
+  creaCabecera(cabecera,"topCuatroCirculos", "Resultados de ");
+  var URLBusqueda ="https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q="+miBusqueda+"&limit=50";
+  var titulo = document.querySelector('#topOf');
+  titulo.insertAdjacentHTML('beforeend', '"'+miBusqueda+'"');
+  peticionAjax(URLBusqueda, function(respuesta) {
+    var topTracks = JSON.parse(respuesta);
+    if(topTracks.total !== 0){//Si la busqueda da resultados
+      var tracks = topTracks.data;
+      añadeContenido(tracks);
+    } else{//Si no da resultados mostramos error
+      cabecera.style.display = 'none';
+      error.style.display = 'block';
+      document.getElementById('tubusqueda').innerText = '"'+miBusqueda+'"';
+    }
+    document.querySelector(".loader").style.display = 'none';
+  });
+}else if(urlParams.hasOwnProperty("artist")){//Si tenemos parametro artista
+  var myParam = urlParams["artist"];
+  creaCabecera(cabecera,"artista");
+  peticionAjax("https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/"+myParam, pintaArtist);
+  peticionAjax("https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/"+myParam+"/top?limit=50", topTracksArtist);
+}else{//Si no mostramos el top segun el pais
+  creaCabecera(cabecera,"topCuatroCirculos", "Top Tracks of ");
+  peticionAjax("https://ipapi.co/json/", topTracksCountry);
 }

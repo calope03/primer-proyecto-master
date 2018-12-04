@@ -24,6 +24,7 @@ body {
 .barra .navbar-brand {
   display: flex;
   align-items: center;
+  color: #fff;
 }
 .barra .navbar-brand>img {
   padding: 7px 14px;
@@ -144,4 +145,37 @@ tr:hover > td > .playMe{
 .playButton {
   max-height: 20px;
   margin-right: 10px;
+}
+
+/*
+ * Loader
+ */
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../images/pageloader.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .9;
+}
+
+
+/*
+ * Error
+ */
+
+#error {
+    margin-top: 20px;
+}
+
+
+/*
+ * Error
+ */
+
+.alert {
+    text-align: center;
 }
