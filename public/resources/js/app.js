@@ -25,22 +25,22 @@ function creaCabecera(cabecera, tipo, titulo){
 
           <div class="row placeholders">
             <a class="col-xs-6 col-sm-3 placeholder" id="circulo-0">
-              <img id = "imagen-1" src="/public/resources/images/prueba.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img id = "imagen-1" src="../images/prueba.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
               <span class="text-muted">Something else</span>
             </a>
             <a class="col-xs-6 col-sm-3 placeholder" id="circulo-1">
-              <img id = "imagen-2" src="/public/resources/images/prueba.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img id = "imagen-2" src="../images/prueba.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
               <span class="text-muted">Something else</span>
             </a>
             <a class="col-xs-6 col-sm-3 placeholder" id="circulo-2">
-              <img id = "imagen-3" src="/public/resources/images/prueba.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img id = "imagen-3" src="../images/prueba.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
               <span class="text-muted">Something else</span>
             </a>
             <a class="col-xs-6 col-sm-3 placeholder" id="circulo-3">
-              <img id = "imagen-4" src="/public/resources/images/prueba.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img id = "imagen-4" src="../images/prueba.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
               <span class="text-muted">Something else</span>
             </a>
@@ -49,7 +49,7 @@ function creaCabecera(cabecera, tipo, titulo){
     cabecera.insertAdjacentHTML('afterbegin', `
           <div class="row placeholdersArtist">
             <div class="col-xs-3 col-sm-3 placeholderArtist" id="circulo">
-              <img id = "imagen-1" src="/public/resources/images/prueba.png" width="250" height="250" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img id = "imagen-1" src="../images/prueba.png" width="250" height="250" class="img-responsive" alt="Generic placeholder thumbnail">
             </div> 
             <div class="col-xs-7 col-sm-7 placeholderArtist"><h1>Label</h1>
               <h5 class="text-muted nFans">Something else</h5>
@@ -107,7 +107,7 @@ function añadeATabla(item,index){
     }
      artistaTabla += '<a href="?artist='+ item.contributors[item.contributors.length-1].id +'" class = "">'+ item.contributors[item.contributors.length-1].name +'</a>';
   }
-  tr.innerHTML = '<td># '+(index+1)+'</td> <td>' + item.title+'</td> <td>'+ artistaTabla +'</td> <td>'+ item.album.title +'</td>  <td><a href="'+ item.link +'" class = "playMe"> <img src="/public/resources/images/play.png" class = "playButton" alt="Play me"/>Play Me</a></td>';
+  tr.innerHTML = '<td># '+(index+1)+'</td> <td>' + item.title+'</td> <td>'+ artistaTabla +'</td> <td>'+ item.album.title +'</td>  <td><a href="'+ item.link +'" class = "playMe"> <img src="../images/play.png" class = "playButton" alt="Play me"/>Play Me</a></td>';
   tabla.appendChild(tr);
 }
 
