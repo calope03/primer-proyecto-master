@@ -158,8 +158,8 @@ tr:hover > td > .playMe{
     width: 100%;
     height: 100%;
     z-index: 9999;
-    background: url('../images/pageloader.gif') 50% 50% no-repeat rgb(249,249,249);
-    opacity: .9;
+    background: url('../images/pageloader.gif') 50% 50% no-repeat rgb(250,250,250);
+    opacity: 1;
 }
 
 
@@ -178,4 +178,14 @@ tr:hover > td > .playMe{
 
 .alert {
     text-align: center;
+}
+
+/*
+ * Footer
+ */
+
+
+.footerimg{
+    height: 25px;
+    margin-right: 10px;
 }
