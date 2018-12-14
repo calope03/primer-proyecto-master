@@ -1,0 +1,191 @@
+
+/* Move down content because we have a fixed navbar that is 65px tall */
+body {
+  padding-top: 65px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Navbar
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+.barra .navbar-brand {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.barra .navbar-brand>img {
+  padding: 7px 14px;
+  padding-top: 20px;
+  width: 85px;
+}
+
+.barra {
+  background-color: #424242;
+  border-color: #424242;
+  min-height: 65px;
+}
+
+.buscar{
+  margin-top: 7px;
+}
+
+
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder Top Tracks
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+.placeholder:hover{
+  margin-bottom: 20px;
+  color: #333;
+  text-decoration: none;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+
+/*
+ * Placeholder Artist
+ */
+
+.placeholdersArtist {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.placeholdersArtist h1 {
+  text-align: left;
+  margin-bottom: 0;
+  /*margin-top: 90px;*/
+}
+.placeholdersArtist .nFans {
+  text-align: left;
+}
+.placeholderArtist {
+  margin-bottom: 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+.placeholderArtist:hover{
+  margin-bottom: 20px;
+  color: #333;
+  text-decoration: none;
+}
+.placeholderArtist img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+
+
+
+/*
+ * Play Button
+ */
+ 
+.playMe{
+  visibility: hidden;
+}
+
+tr:hover > td > .playMe{
+  visibility: visible;
+}
+ 
+.playButton {
+  max-height: 20px;
+  margin-right: 10px;
+}
+
+/*
+ * Loader
+ */
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../images/pageloader.gif') 50% 50% no-repeat rgb(250,250,250);
+    opacity: 1;
+}
+
+
+/*
+ * Error
+ */
+
+#error {
+    margin-top: 20px;
+}
+
+
+/*
+ * Error
+ */
+
+.alert {
+    text-align: center;
+}
+
+/*
+ * Footer
+ */
+
+
+.footerimg{
+    height: 25px;
+    margin-right: 10px;
+}

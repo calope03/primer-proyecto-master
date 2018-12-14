@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>HitBeats</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="public/resources/css/dashboard.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    
+    <div class="loader"></div>
+    <div id="error" class="container">
+      <div class="col-sm-12 col-md-12 alert alert-danger alert-dismissible show" role="alert">
+        Lo sentimos, no se ha encontrado ningun resultado para <strong><span id = "tubusqueda"></span></strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <img class="col-sm-12 col-md-6 col-md-offset-3 align-self-center"src="public/resources/images/error1.png"></img>
+      
+      
+    </div>
+    
+    
+    
+    <nav class="barra navbar-fixed-top navbar-inverse">
+		  <div >
+		  
+		  	<a class="navbar-brand" href="index.html">
+		  	  <img src="public/resources/images/logo.png" alt=""> <h3>HitBeats</h3>
+        </a>
+        <div class="col-sm-3 col-md-3 pull-right buscar">
+            <form class="navbar-form" role="search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar" name="q">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+            </form>
+        </div>
+      </div>
+		</nav>
+
+    <div class="container-fluid">
+    	
+      <div class="row">
+        
+        <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 main">
+          
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Title</th>
+                  <th>Artist</th>
+                  <th>Album</th>
+                  <th>Track</th>
+                </tr>
+              </thead>
+              <tbody id = "cuerpoTabla">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+    <div class="container-fluid footer">
+      <div class="row">
+      
+        <div class="col-md-offset-1 col-md-10">
+          <hr>
+          <div class="col-md-8">
+            <img class = "footerimg" src="public/resources/images/github.png" ></img>
+            <a href="https://github.com/calope03/primer-proyecto-master">View this project on GitHub</a>    
+          </div>
+          <div class="col-md-4">
+            <p class="muted pull-right">Carmen López Gonzalo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.8/purify.min.js"></script>
+    <script src="public/resources/js/paises.js"></script>
+    <script src="public/resources/js/app.js"></script>
+    
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
